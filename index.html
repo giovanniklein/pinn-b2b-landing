@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KIPI — Vários atacados, um só pedido</title>
-<meta name="description" content="A KIPI conecta o seu comércio aos melhores atacadistas da sua região. Monte um pedido, compare preços e compre com facilidade, direto do celular." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23E01423'/%3E%3Ctext x='50' y='68' font-family='Arial' font-size='52' font-weight='bold' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+<title>KIPI — Compre do atacado com frete grátis</title>
+<meta name="description" content="A KIPI conecta a sua loja aos melhores atacadistas da sua região, com frete grátis. Monte o pedido, compare preços e economize, direto do celular." />
+<link rel="icon" href="/logo.jpeg" />
 <style>
   :root{
     --red:#E01423; --red-2:#B10D19; --red-soft:#FDECEC;
-    --ink:#14161C; --ink-2:#1D2029;
+    --ink:#14161C; --wpp:#25D366;
     --bg:#FFFFFF; --bg-soft:#F6F7F9;
     --text:#171A21; --muted:#616B7A; --line:#E9ECF1;
     --radius:18px; --shadow:0 10px 30px -12px rgba(20,22,28,.18);
     --shadow-lg:0 30px 60px -20px rgba(20,22,28,.30);
-    --ff:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --ff:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -25,21 +25,14 @@
   .btn:hover{transform:translateY(-2px)}
   .btn-red{background:var(--red);color:#fff;box-shadow:0 10px 22px -10px rgba(224,20,35,.7)}
   .btn-red:hover{background:var(--red-2)}
-  .btn-ink{background:var(--ink);color:#fff}
-  .btn-ink:hover{background:#000}
-  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-  .btn-ghost:hover{border-color:var(--ink);background:#fff}
   .btn-lg{padding:16px 28px;font-size:16px}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--red);background:var(--red-soft);padding:7px 14px;border-radius:999px}
+  .logo-img{width:42px;height:42px;border-radius:10px;object-fit:cover;display:block}
 
-  /* Header */
-  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
   .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:22px;letter-spacing:-.02em}
-  .logo .mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--red),#F0433F);display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(224,20,35,.7)}
-  .nav-cta{display:flex;gap:10px}
 
-  /* Hero */
   .hero{position:relative;overflow:hidden;padding:76px 0 90px}
   .hero::before{content:"";position:absolute;inset:0;background:
      radial-gradient(60% 55% at 82% 8%,rgba(224,20,35,.14),transparent 60%),
@@ -52,7 +45,6 @@
   .trust{margin-top:26px;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
   .trust svg{color:var(--red)}
 
-  /* Phone mockup */
   .phone-wrap{display:flex;justify-content:center;perspective:1400px}
   .phone{width:300px;height:600px;background:#0e0f13;border-radius:44px;padding:12px;box-shadow:var(--shadow-lg);position:relative;animation:float 6s ease-in-out infinite;transform:rotateY(-9deg) rotateX(3deg)}
   @keyframes float{0%,100%{transform:rotateY(-9deg) rotateX(3deg) translateY(0)}50%{transform:rotateY(-9deg) rotateX(3deg) translateY(-14px)}}
@@ -60,13 +52,13 @@
   .screen{width:100%;height:100%;background:var(--bg-soft);border-radius:33px;overflow:hidden;display:flex;flex-direction:column}
   .app-top{background:#fff;padding:16px 15px 12px;border-bottom:1px solid var(--line)}
   .app-brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px}
-  .app-brand .m{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--red),#F0433F);display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800}
-  .app-hero{font-weight:800;font-size:18px;margin:12px 2px 3px;letter-spacing:-.02em}
+  .app-brand img{width:26px;height:26px;border-radius:7px;object-fit:cover}
+  .app-hero{font-weight:800;font-size:20px;margin:12px 2px 3px;letter-spacing:-.02em;color:var(--red)}
   .app-sub{font-size:11px;color:var(--muted)}
   .app-search{margin-top:11px;background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:11.5px;color:#9aa2ae;display:flex;gap:7px;align-items:center}
   .app-grid{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;overflow:hidden}
   .p-card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .p-thumb{height:64px;background:linear-gradient(135deg,#f1f3f6,#e7ebf1);position:relative}
+  .p-thumb{height:64px}
   .p-thumb.a{background:linear-gradient(135deg,#FFE9D6,#FFD3B0)}
   .p-thumb.b{background:linear-gradient(135deg,#DCEEFF,#BBDcFF)}
   .p-thumb.c{background:linear-gradient(135deg,#E4F7E7,#C7ECCD)}
@@ -76,36 +68,28 @@
   .p-price{font-size:11px;font-weight:800;color:var(--red);margin-top:4px}
   .p-tag{font-size:8px;color:var(--muted)}
 
-  /* Sections */
   section.block{padding:88px 0}
-  .sec-head{text-align:center;max-width:640px;margin:0 auto 52px}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 52px}
   .sec-head h2{font-size:clamp(28px,3.6vw,42px);letter-spacing:-.03em;font-weight:800;line-height:1.08;margin:14px 0 12px}
   .sec-head p{color:var(--muted);font-size:17.5px}
 
-  /* Steps */
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .step{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative}
+  .step{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px}
   .step .num{width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-weight:800;color:var(--red);font-size:18px;box-shadow:var(--shadow);margin-bottom:16px}
   .step h3{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:7px}
   .step p{color:var(--muted);font-size:15px}
 
-  /* Split (cliente / parceiro) */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-  .panel{border-radius:26px;padding:40px 36px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
-  .panel.cli{background:linear-gradient(150deg,#E01423,#A50B16)}
-  .panel.par{background:linear-gradient(150deg,#1F232E,#0C0E13)}
-  .panel::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-90px;top:-90px;background:rgba(255,255,255,.08)}
-  .panel .kick{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
-  .panel h3{font-size:29px;font-weight:800;letter-spacing:-.02em;margin:10px 0 6px}
-  .panel > p{opacity:.9;font-size:15.5px;margin-bottom:22px;max-width:90%}
-  .panel ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:30px}
-  .panel li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px}
-  .panel li svg{flex:0 0 20px;margin-top:2px;opacity:.95}
-  .panel .btn{background:#fff;color:var(--ink)}
-  .panel.cli .btn{color:var(--red-2)}
-  .panel .btn:hover{background:#f2f2f2}
+  .cli-panel{max-width:760px;margin:0 auto;border-radius:26px;padding:44px 40px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);background:linear-gradient(150deg,#E01423,#A50B16)}
+  .cli-panel::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-100px;top:-100px;background:rgba(255,255,255,.08)}
+  .cli-panel .kick{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+  .cli-panel h3{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:10px 0 6px}
+  .cli-panel > p{opacity:.92;font-size:16px;margin-bottom:24px;max-width:92%}
+  .cli-panel ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:30px}
+  .cli-panel li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px}
+  .cli-panel li svg{flex:0 0 20px;margin-top:2px}
+  .cli-panel .btn{background:#fff;color:var(--red-2)}
+  .cli-panel .btn:hover{background:#f2f2f2}
 
-  /* Features */
   .features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .feat{padding:28px 26px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;transition:transform .18s ease,box-shadow .2s ease,border-color .2s}
   .feat:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
@@ -113,41 +97,37 @@
   .feat h4{font-size:18px;font-weight:700;margin-bottom:7px;letter-spacing:-.01em}
   .feat p{color:var(--muted);font-size:14.5px}
 
-  /* CTA band */
   .cta-band{background:var(--ink);color:#fff;border-radius:30px;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
   .cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 120% at 50% 0%,rgba(224,20,35,.35),transparent 60%)}
   .cta-band > *{position:relative}
   .cta-band h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
   .cta-band p{opacity:.8;font-size:17px;max-width:520px;margin:0 auto 30px}
-  .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
-  /* Footer */
-  footer{padding:54px 0 40px;border-top:1px solid var(--line);margin-top:14px}
+  footer{padding:48px 0 40px;border-top:1px solid var(--line);margin-top:14px}
   .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
   .foot .logo{font-size:19px}
-  .foot-links{display:flex;gap:22px;color:var(--muted);font-size:14px;flex-wrap:wrap}
+  .foot-links{display:flex;gap:22px;color:var(--muted);font-size:14px;flex-wrap:wrap;align-items:center}
   .foot-links a:hover{color:var(--red)}
-  .copy{color:#9aa2ae;font-size:13px;margin-top:26px;text-align:center}
+  .wpp-foot{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#128C4A}
+  .copy{color:#9aa2ae;font-size:13px;margin-top:24px;text-align:center}
 
-  /* Reveal */
+  /* Floating WhatsApp */
+  .wpp-float{position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;background:var(--wpp);color:#fff;font-weight:700;padding:13px 18px 13px 15px;border-radius:999px;box-shadow:0 14px 30px -8px rgba(37,211,102,.6);transition:transform .15s ease}
+  .wpp-float:hover{transform:translateY(-3px)}
+  .wpp-float .lbl{font-size:14px}
+
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
 
   @media(max-width:900px){
-    .hero-grid{grid-template-columns:1fr;gap:40px}
-    .hero{padding:52px 0 60px}
-    .phone-wrap{order:-1}
-    .steps{grid-template-columns:1fr}
-    .split{grid-template-columns:1fr}
-    .features{grid-template-columns:1fr 1fr}
+    .hero-grid{grid-template-columns:1fr;gap:40px}.hero{padding:52px 0 60px}
+    .phone-wrap{order:-1}.steps{grid-template-columns:1fr}
+    .features{grid-template-columns:1fr 1fr}.cli-panel ul{grid-template-columns:1fr}
     section.block{padding:64px 0}
-    .nav-cta .btn-ghost{display:none}
   }
   @media(max-width:560px){
-    .features{grid-template-columns:1fr}
-    .logo span.t{font-size:20px}
-    .hero-actions .btn{flex:1;justify-content:center}
-    .cta-band{padding:48px 24px}
+    .features{grid-template-columns:1fr}.hero-actions .btn{flex:1;justify-content:center}
+    .cta-band{padding:48px 24px}.wpp-float .lbl{display:none}.cli-panel{padding:36px 26px}
   }
 </style>
 </head>
@@ -156,36 +136,29 @@
 <header>
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="KIPI">
-      <span class="mark">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3V7Z" stroke="#fff" stroke-width="1.8"/><path d="M14 10h4l3 3v2h-7v-5Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="17" r="2" stroke="#fff" stroke-width="1.8"/></svg>
-      </span>
-      <span class="t">KIPI</span>
+      <img class="logo-img" src="/logo.jpeg" alt="KIPI" />
+      <span>KIPI</span>
     </a>
-    <nav class="nav-cta">
-      <a class="btn btn-ghost" href="https://parceiros.kipi.com.br">Sou Parceiro</a>
-      <a class="btn btn-red" href="https://cliente.kipi.com.br">Sou Cliente</a>
-    </nav>
+    <a class="btn btn-red" href="https://cliente.kipi.com.br">Sou Cliente</a>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="reveal in">
-        <span class="eyebrow">Plataforma B2B de atacado</span>
-        <h1>Vários atacados.<br><span class="accent">Um só pedido.</span></h1>
-        <p class="lead">A KIPI conecta a sua loja aos melhores atacadistas da sua região. Monte o pedido, compare preços e compre com facilidade — direto do celular.</p>
+        <span class="eyebrow">Plataforma de atacado · Frete grátis</span>
+        <h1>Compre do atacado<br><span class="accent">com frete grátis.</span></h1>
+        <p class="lead">A KIPI conecta a sua loja aos melhores atacadistas da sua região. Monte o pedido, compare preços e economize — direto do celular.</p>
         <div class="hero-actions">
           <a class="btn btn-red btn-lg" href="https://cliente.kipi.com.br">Comprar como Cliente
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn-ink btn-lg" href="https://parceiros.kipi.com.br">Vender como Parceiro</a>
         </div>
         <div class="trust">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
-          Sem loja física, sem complicação. Feito para o comércio brasileiro.
+          Feito para economizar.
         </div>
       </div>
 
@@ -194,8 +167,8 @@
           <div class="notch"></div>
           <div class="screen">
             <div class="app-top">
-              <div class="app-brand"><span class="m">K</span> KIPI</div>
-              <div class="app-hero">Aqui frete é grátis</div>
+              <div class="app-brand"><img src="/logo.jpeg" alt="KIPI" /> KIPI</div>
+              <div class="app-hero">FRETE GRÁTIS</div>
               <div class="app-sub">Toque na foto para abrir e comprar.</div>
               <div class="app-search">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#9aa2ae" stroke-width="2"/><path d="m20 20-3-3" stroke="#9aa2ae" stroke-width="2" stroke-linecap="round"/></svg>
@@ -214,95 +187,71 @@
     </div>
   </section>
 
-  <!-- COMO FUNCIONA -->
   <section class="block" style="background:var(--bg-soft)">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">Como funciona</span>
-        <h2>Do carrinho à entrega, em 3 passos</h2>
-        <p>Simples para quem compra e para quem vende. Tudo num app, do jeito do comércio.</p>
+        <h2>Do pedido à entrega, em 3 passos</h2>
+        <p>Simples para quem compra, tudo num app, rápido, fácil e inteligente.</p>
       </div>
       <div class="steps">
-        <div class="step reveal"><div class="num">1</div><h3>Descubra os atacados</h3><p>Você vê apenas os parceiros que atendem a sua cidade — com produtos, preços e embalagens de verdade.</p></div>
-        <div class="step reveal"><div class="num">2</div><h3>Monte seu pedido</h3><p>Adicione produtos ao carrinho, escolha a embalagem (CX, UN, FD, PALLET...) e a quantidade. Um pedido por atacadista.</p></div>
-        <div class="step reveal"><div class="num">3</div><h3>Finalize e acompanhe</h3><p>Feche o pedido, gere o PDF, acompanhe o status e refaça a compra em segundos quando precisar.</p></div>
+        <div class="step reveal"><div class="num">1</div><h3>Descubra os atacados</h3><p>Você vê apenas os parceiros que atendem a sua cidade, com produtos, preços e o melhor, frete grátis.</p></div>
+        <div class="step reveal"><div class="num">2</div><h3>Monte seu pedido</h3><p>Adicione produtos ao seu pedido virtual, escolha a embalagem (CX, UN, FD, DISPLAY, PALLET...) e a quantidade ideal. Um pedido, mais lucro para o seu negócio.</p></div>
+        <div class="step reveal"><div class="num">3</div><h3>Finalize e acompanhe</h3><p>Feche o pedido, tenha o seu comprovante de pedido, acompanhe o status e refaça a compra em segundos quando precisar.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- CLIENTE / PARCEIRO -->
   <section class="block">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">Para os dois lados</span>
-        <h2>Feito para quem compra e para quem vende</h2>
-        <p>Escolha o seu perfil e entre no ambiente certo para você.</p>
+        <span class="eyebrow">Para o seu negócio</span>
+        <h2>Sua loja sempre abastecida</h2>
+        <p>Tudo o que o seu comércio precisa, com preços de atacado e frete grátis.</p>
       </div>
-      <div class="split">
-        <div class="panel cli reveal">
-          <div class="kick">Para o Cliente</div>
-          <h3>Sua loja sempre abastecida</h3>
-          <p>Compre de vários atacadistas num só lugar, compare preços e economize tempo.</p>
-          <ul>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Catálogo unificado de vários atacados</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Busca inteligente: acha com ou sem acento</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Só aparece quem atende a sua cidade</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preços por unidade, caixa, fardo, palete...</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pedidos com PDF e recompra rápida</li>
-          </ul>
-          <a class="btn btn-lg" href="https://cliente.kipi.com.br">Entrar como Cliente
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-
-        <div class="panel par reveal">
-          <div class="kick">Para o Parceiro</div>
-          <h3>Sua vitrine digital de atacado</h3>
-          <p>Alcance novos clientes da sua região e gerencie tudo pelo celular, sem custo de loja física.</p>
-          <ul>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vitrine digital e catálogo completo</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Defina sua área de atendimento por cidade</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Controle de embalagens, preços e estoque</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Aceite, recuse e acompanhe pedidos</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pause suas vendas quando quiser</li>
-          </ul>
-          <a class="btn btn-lg" href="https://parceiros.kipi.com.br">Entrar como Parceiro
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
+      <div class="cli-panel reveal">
+        <div class="kick">Para o Cliente</div>
+        <h3>Compre de vários atacados num só lugar</h3>
+        <p>Compare preços, economize tempo e ganhe no frete grátis da sua região.</p>
+        <ul>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Catálogo unificado de vários atacados</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Frete grátis na sua região</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Busca inteligente: acha com ou sem acento</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Só aparece quem atende a sua cidade</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Preços por unidade, caixa, fardo, palete...</li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Comprovante em PDF e recompra rápida</li>
+        </ul>
+        <a class="btn btn-lg" href="https://cliente.kipi.com.br">Entrar como Cliente
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
   <section class="block" style="background:var(--bg-soft)">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">Recursos</span>
-        <h2>Tudo o que o atacado precisa</h2>
-        <p>Uma plataforma pensada para a realidade do comércio — do pequeno varejo ao grande distribuidor.</p>
+        <h2>Tudo o que o seu comércio precisa</h2>
+        <p>Uma plataforma pensada para a realidade do comércio brasileiro.</p>
       </div>
       <div class="features">
+        <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h11v8H4V7Z" stroke="currentColor" stroke-width="1.9"/><path d="M15 10h4l2 2v3h-6v-5Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="8" cy="17" r="1.6" stroke="currentColor" stroke-width="1.9"/><circle cx="18" cy="17" r="1.6" stroke="currentColor" stroke-width="1.9"/></svg></div><h4>Frete grátis</h4><p>Compre direto do atacado com frete grátis na sua região.</p></div>
         <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.9"/><path d="M3 9h18M8 4v16" stroke="currentColor" stroke-width="1.9"/></svg></div><h4>Catálogo multi-atacadista</h4><p>Produtos de vários parceiros reunidos, com fotos, preços e embalagens.</p></div>
         <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 5h2l2 11h9l2-7H7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.4" fill="currentColor"/><circle cx="17" cy="20" r="1.4" fill="currentColor"/></svg></div><h4>Carrinho inteligente</h4><p>Compre de vários atacados de uma vez — um pedido separado para cada um.</p></div>
         <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.9"/><path d="m20 20-3-3" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Busca sem complicação</h4><p>Encontra o produto com ou sem acento, em maiúscula ou minúscula.</p></div>
-        <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M13 3v5h5M10 13h5M10 16h5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Pedidos em PDF</h4><p>Gere e compartilhe o pedido em PDF e refaça a compra quando quiser.</p></div>
-        <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.9"/></svg></div><h4>Cobertura por cidade</h4><p>O cliente só vê os parceiros que realmente entregam na cidade dele.</p></div>
-        <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Gestão para o parceiro</h4><p>Produtos, preços, pedidos e área de atendimento — tudo na palma da mão.</p></div>
+        <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M13 3v5h5M10 13h5M10 16h5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Comprovante em PDF</h4><p>Gere e compartilhe o comprovante do pedido e refaça a compra quando quiser.</p></div>
+        <div class="feat reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.4" stroke="currentColor" stroke-width="1.9"/></svg></div><h4>Cobertura por cidade</h4><p>Você só vê os parceiros que realmente entregam na sua cidade.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
   <section class="block">
     <div class="wrap">
       <div class="cta-band reveal">
-        <h2>Pronto para começar?</h2>
-        <p>Escolha o seu perfil e entre agora. É rápido, e o primeiro passo é grátis.</p>
-        <div class="cta-actions">
-          <a class="btn btn-red btn-lg" href="https://cliente.kipi.com.br">Sou Cliente — quero comprar</a>
-          <a class="btn btn-lg" style="background:#fff;color:var(--ink)" href="https://parceiros.kipi.com.br">Sou Parceiro — quero vender</a>
-        </div>
+        <h2>Pronto para economizar?</h2>
+        <p>Entre agora e comece a comprar do atacado com frete grátis.</p>
+        <a class="btn btn-red btn-lg" href="https://cliente.kipi.com.br">Sou Cliente — quero comprar</a>
       </div>
     </div>
   </section>
@@ -312,17 +261,25 @@
   <div class="wrap">
     <div class="foot">
       <a class="logo" href="#top">
-        <span class="mark"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M3 7h11v8H3V7Z" stroke="#fff" stroke-width="1.8"/><path d="M14 10h4l3 3v2h-7v-5Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="17" r="2" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="17" r="2" stroke="#fff" stroke-width="1.8"/></svg></span>
-        <span class="t">KIPI</span>
+        <img class="logo-img" src="/logo.jpeg" alt="KIPI" />
+        <span>KIPI</span>
       </a>
       <div class="foot-links">
         <a href="https://cliente.kipi.com.br">Área do Cliente</a>
-        <a href="https://parceiros.kipi.com.br">Área do Parceiro</a>
+        <a class="wpp-foot" href="https://wa.me/555198527906" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.6c1.7.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3Zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.9.8.8-3.8-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.3.2-.6.1c-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/></svg>
+          (51) 9852-7906
+        </a>
       </div>
     </div>
-    <div class="copy">© 2026 KIPI · Plataforma B2B de atacado · Feito para o comércio brasileiro.</div>
+    <div class="copy">© 2026 KIPI · Compre do atacado com frete grátis · Feito para economizar.</div>
   </div>
 </footer>
+
+<a class="wpp-float" href="https://wa.me/555198527906" target="_blank" rel="noopener" aria-label="Fale no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.6c1.7.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3Zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.9.8.8-3.8-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.4 9.8-9.8 9.8Zm5.4-7.3c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.3.2-.6.1c-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4Z"/></svg>
+  <span class="lbl">WhatsApp</span>
+</a>
 
 <script>
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
